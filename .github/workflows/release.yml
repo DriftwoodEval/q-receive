@@ -22,7 +22,7 @@ jobs:
       - name: Build .exe
         run: |
           .venv\Scripts\Activate.ps1
-          pyinstaller --noconfirm --clean --name "QReceive" qsend.py
+          pyinstaller --noconfirm --clean --name "QReceive" qreceive.py
 
       - name: Compress archive
         run: Compress-Archive -Path dist/QReceive -DestinationPath dist/QReceive.zip
