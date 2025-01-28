@@ -87,6 +87,10 @@ def check_questionnaires(driver):
         client = clients[id]
         for questionnaire in client["questionnaires"]:
             questionnaire["done"] = check_q_done(driver, questionnaire["link"])
+    write_clients(clients)
+
+
+def write_clients(clients):
     with open("./clients.yml", "w") as file:
         yaml.dump(clients, file, default_flow_style=False)
 
@@ -130,6 +134,8 @@ def main():
                 f"{client['firstname']} {client['lastname']} has finished their questionnares for an appointment on {str(format_appointment(client))}. Please generate.",
                 info["openphone"]["users"]["maddy"]["phone"],
             )
+            del clients[id]
+        write_clients(clients)
 
 
 main()
